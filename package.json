@@ -1,0 +1,74 @@
+{
+  "name": "appmap",
+  "version": "0.1.0",
+  "description": "Interactive App Map visualization for React — see all screens, routes, and navigation flows in a drag-and-drop canvas. Export as structured Markdown for AI agents.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./analysis": {
+      "types": "./dist/analysis/index.d.ts",
+      "import": "./dist/analysis/index.js",
+      "require": "./dist/analysis/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.27.0",
+    "@babel/traverse": "^7.27.0",
+    "@babel/types": "^7.27.0",
+    "@dagrejs/dagre": "^1.1.4",
+    "@xyflow/react": "^12.6.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "jsdom": "^26.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sass": "^1.87.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.1.0"
+  },
+  "keywords": [
+    "react",
+    "appmap",
+    "visualization",
+    "routes",
+    "navigation",
+    "developer-tools",
+    "ai-agents",
+    "mermaid",
+    "flowchart"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yamparalarahul27/appmap.git"
+  },
+  "author": "yamparalarahul27"
+}
