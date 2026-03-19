@@ -79,14 +79,14 @@ import { analyzeProject } from '@yamparala27/agentux/analysis';
 import { writeFileSync } from 'fs';
 
 const data = await analyzeProject('./');
-writeFileSync('@yamparala27/agentux.json', JSON.stringify(data, null, 2));
+writeFileSync('agentux.json', JSON.stringify(data, null, 2));
 ```
 
 Then pass the result to the component:
 
 ```tsx
 import { AppMap } from '@yamparala27/agentux';
-import mapData from '../@yamparala27/agentux.json';
+import mapData from '../agentux.json';
 
 function App() {
   return (
