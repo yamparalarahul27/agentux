@@ -1,4 +1,5 @@
 import type { AppMapData, FlowEdge, RouteNode } from '../types';
+import { matchDynamicRoute } from '../analysis/parsers/common';
 
 /** Merge static analysis data with runtime-detected data */
 export function mergeAppMapData(
@@ -59,24 +60,11 @@ function findMatchingRoute(runtimePath: string, routes: RouteNode[]): RouteNode 
   const exact = routes.find((r) => r.path === runtimePath);
   if (exact) return exact;
 
-  // Pattern match for dynamic segments
-  const runtimeSegments = runtimePath.split('/').filter(Boolean);
-
+  // Pattern match for dynamic segments using shared matcher
   for (const route of routes) {
-    const patternSegments = route.path.split('/').filter(Boolean);
-
-    if (runtimeSegments.length !== patternSegments.length) continue;
-
-    let matches = true;
-    for (let i = 0; i < patternSegments.length; i++) {
-      if (patternSegments[i].startsWith(':')) continue; // Dynamic segment matches anything
-      if (patternSegments[i] !== runtimeSegments[i]) {
-        matches = false;
-        break;
-      }
+    if (matchDynamicRoute(runtimePath, route.path)) {
+      return route;
     }
-
-    if (matches) return route;
   }
 
   return null;

@@ -1,8 +1,9 @@
 import React from 'react';
 import { BaseEdge, getSmoothStepPath, type EdgeProps } from '@xyflow/react';
+import { DEFAULT_THEME } from '../constants';
 
 const edgeTypeColors: Record<string, string> = {
-  link: '#6366f1',
+  link: DEFAULT_THEME.edgeColor,
   navigate: '#8b5cf6',
   redirect: '#f59e0b',
   inferred: '#6b7280',

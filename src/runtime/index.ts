@@ -12,6 +12,7 @@ interface RuntimeData {
 export function useRuntimeRoutes(): RuntimeData {
   const trackerRef = useRef<NavigationTracker | null>(null);
   const [data, setData] = useState<RuntimeData>({ routes: [], edges: [] });
+  const lastKeyRef = useRef<string>('');
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -30,6 +31,13 @@ export function useRuntimeRoutes(): RuntimeData {
     // Poll for new navigation events periodically
     const interval = setInterval(() => {
       const uniqueEdges = tracker.getUniqueEdges();
+      const currentPath = window.location.pathname;
+
+      // Change detection: skip update if nothing changed
+      const key = uniqueEdges.map((e) => `${e.from}→${e.to}`).join('|') + '::' + currentPath;
+      if (key === lastKeyRef.current) return;
+      lastKeyRef.current = key;
+
       const allPaths = new Set<string>();
 
       // Collect all unique paths from navigation events
@@ -38,12 +46,12 @@ export function useRuntimeRoutes(): RuntimeData {
         allPaths.add(edge.from);
         allPaths.add(edge.to);
       }
-      // Also add the current path
-      allPaths.add(window.location.pathname);
+      allPaths.add(currentPath);
 
       const routes = Array.from(allPaths).map(createRuntimeRoute);
-      const edges: FlowEdge[] = uniqueEdges.map((edge, i) => ({
-        id: `runtime-edge-${i}`,
+      // Stable edge IDs based on route pair, not array index
+      const edges: FlowEdge[] = uniqueEdges.map((edge) => ({
+        id: `runtime-${pathToId(edge.from)}-${pathToId(edge.to)}`,
         sourceRouteId: pathToId(edge.from),
         targetRouteId: pathToId(edge.to),
         type: 'inferred' as const,

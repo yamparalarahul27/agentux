@@ -5,6 +5,8 @@ export interface NavigationEvent {
 }
 
 /** Tracks navigation events by patching browser history APIs */
+const MAX_EVENTS = 1000;
+
 export class NavigationTracker {
   private events: NavigationEvent[] = [];
   private currentPath: string;
@@ -95,5 +97,10 @@ export class NavigationTracker {
       to,
       timestamp: Date.now(),
     });
+
+    // Cap events to prevent unbounded memory growth
+    if (this.events.length > MAX_EVENTS) {
+      this.events = this.events.slice(-MAX_EVENTS);
+    }
   }
 }

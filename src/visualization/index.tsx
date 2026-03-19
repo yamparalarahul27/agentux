@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   ReactFlow,
   Controls,
@@ -13,13 +13,13 @@ import {
 import '@xyflow/react/dist/style.css';
 
 import type { AppMapData } from '../types';
+import { DEFAULT_THEME } from '../constants';
 import { RouteNodeComponent } from './RouteNode';
 import { FlowEdgeComponent } from './FlowEdge';
 import { getLayoutedElements } from './layout';
 
 interface AppMapCanvasProps {
   data: AppMapData;
-  onRelayout?: () => void;
 }
 
 const nodeTypes = {
@@ -57,7 +57,7 @@ function buildFlowElements(data: AppMapData): { nodes: Node[]; edges: Edge[] } {
       animated: edge.type === 'inferred',
       markerEnd: {
         type: MarkerType.ArrowClosed,
-        color: '#6366f1',
+        color: DEFAULT_THEME.edgeColor,
       },
       data: { type: edge.type },
     }));
@@ -74,12 +74,6 @@ export function AppMapCanvas({ data }: AppMapCanvasProps) {
 
   const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
-
-  const onRelayout = useCallback(() => {
-    const { nodes: newNodes, edges: newEdges } = buildFlowElements(data);
-    setNodes(newNodes);
-    setEdges(newEdges);
-  }, [data, setNodes, setEdges]);
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
@@ -99,13 +93,13 @@ export function AppMapCanvas({ data }: AppMapCanvasProps) {
           type: 'flowEdge',
         }}
         style={{
-          background: '#0f0f10',
+          background: DEFAULT_THEME.bgColor,
         }}
       >
         <Controls
           style={{
-            background: '#18181b',
-            border: '1px solid #27272a',
+            background: DEFAULT_THEME.nodeBgColor,
+            border: `1px solid ${DEFAULT_THEME.nodeBorderColor}`,
             borderRadius: '8px',
           }}
         />
@@ -113,7 +107,7 @@ export function AppMapCanvas({ data }: AppMapCanvasProps) {
           variant={BackgroundVariant.Dots}
           gap={20}
           size={1}
-          color="#27272a"
+          color={DEFAULT_THEME.nodeBorderColor}
         />
       </ReactFlow>
     </div>

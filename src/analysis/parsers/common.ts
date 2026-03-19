@@ -83,3 +83,30 @@ export function pathToId(routePath: string): string {
 export function relativePath(rootDir: string, filePath: string): string {
   return path.relative(rootDir, filePath).replace(/\\/g, '/');
 }
+
+/** Check if a concrete path matches a route pattern with dynamic segments */
+export function matchDynamicRoute(concretePath: string, routePattern: string): boolean {
+  const concreteSegments = concretePath.split('/').filter(Boolean);
+  const patternSegments = routePattern.split('/').filter(Boolean);
+
+  // Check for catch-all
+  const hasCatchAll = patternSegments.some((s) => s.endsWith('*'));
+  if (!hasCatchAll && concreteSegments.length !== patternSegments.length) {
+    return false;
+  }
+
+  for (let i = 0; i < patternSegments.length; i++) {
+    const pattern = patternSegments[i];
+
+    // Catch-all matches everything remaining
+    if (pattern.endsWith('*')) return true;
+
+    // Dynamic segment matches anything
+    if (pattern.startsWith(':')) continue;
+
+    // Static segment must match exactly
+    if (concreteSegments[i] !== pattern) return false;
+  }
+
+  return true;
+}

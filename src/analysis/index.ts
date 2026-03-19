@@ -5,6 +5,7 @@ import { scanNextjsAppRoutes } from './parsers/nextjs-app';
 import { scanNextjsPagesRoutes } from './parsers/nextjs-pages';
 import { scanReactRouterRoutes } from './parsers/react-router';
 import { detectLinks } from './link-detector';
+import { matchDynamicRoute } from './parsers/common';
 
 /** Analyze a project and return the complete app map data */
 export async function analyzeProject(rootDir: string): Promise<AppMapData> {
@@ -33,12 +34,18 @@ export async function analyzeProject(rootDir: string): Promise<AppMapData> {
   }
 
   // Detect navigation links in all route component files
+  // Cache parsed results by file path to avoid re-parsing shared component files
+  const linkCache = new Map<string, ReturnType<typeof detectLinks>>();
   const edges: FlowEdge[] = [];
   for (const route of routes) {
     if (!route.componentFile) continue;
 
     const absolutePath = path.resolve(resolvedRoot, route.componentFile);
-    const linkResult = detectLinks(absolutePath, route.id);
+    let linkResult = linkCache.get(absolutePath);
+    if (!linkResult) {
+      linkResult = detectLinks(absolutePath, route.id);
+      linkCache.set(absolutePath, linkResult);
+    }
 
     for (const target of linkResult.targets) {
       // Try to match target path to a known route
@@ -81,33 +88,6 @@ function matchTargetRoute(targetPath: string, routes: RouteNode[]): RouteNode | 
   }
 
   return null;
-}
-
-/** Check if a concrete path matches a route pattern with dynamic segments */
-function matchDynamicRoute(concretePath: string, routePattern: string): boolean {
-  const concreteSegments = concretePath.split('/').filter(Boolean);
-  const patternSegments = routePattern.split('/').filter(Boolean);
-
-  // Check for catch-all
-  const hasCatchAll = patternSegments.some((s) => s.endsWith('*'));
-  if (!hasCatchAll && concreteSegments.length !== patternSegments.length) {
-    return false;
-  }
-
-  for (let i = 0; i < patternSegments.length; i++) {
-    const pattern = patternSegments[i];
-
-    // Catch-all matches everything remaining
-    if (pattern.endsWith('*')) return true;
-
-    // Dynamic segment matches anything
-    if (pattern.startsWith(':')) continue;
-
-    // Static segment must match exactly
-    if (concreteSegments[i] !== pattern) return false;
-  }
-
-  return true;
 }
 
 // Re-export for convenience

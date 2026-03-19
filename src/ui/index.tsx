@@ -3,7 +3,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import type { AppMapConfig, AppMapData } from '../types';
 import { DEFAULT_POSITION } from '../constants';
-import { FloatingButton } from './FloatingButton';
+import { FloatingButton, type ButtonPosition } from './FloatingButton';
 import { Modal } from './Modal';
 import { Toolbar } from './Toolbar';
 import { AppMapCanvas } from '../visualization';
@@ -21,13 +21,10 @@ export function AppMap({
   devOnly = true,
 }: AppMapProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [relayoutKey, setRelayoutKey] = useState(0);
+  const [buttonPos, setButtonPos] = useState<ButtonPosition | null>(null);
 
-  // Dev-only guard
-  if (devOnly && typeof process !== 'undefined' && process.env?.NODE_ENV === 'production') {
-    return null;
-  }
-
-  // Runtime route detection
+  // Runtime route detection — must be called before any conditional returns (Rules of Hooks)
   const runtimeData = useRuntimeRoutes();
 
   // Merge static + runtime data
@@ -54,10 +51,17 @@ export function AppMap({
   }, [mergedData]);
 
   const handleRelayout = useCallback(() => {
-    // Force re-render by toggling state — the canvas will re-layout from data
-    setIsOpen(false);
-    requestAnimationFrame(() => setIsOpen(true));
+    setRelayoutKey((k) => k + 1);
   }, []);
+
+  const handleButtonPositionChange = useCallback((pos: ButtonPosition) => {
+    setButtonPos(pos);
+  }, []);
+
+  // Dev-only guard — after all hooks
+  if (devOnly && typeof process !== 'undefined' && process.env?.NODE_ENV === 'production') {
+    return null;
+  }
 
   // Don't render anything if there's no data at all
   if (!mergedData) {
@@ -66,6 +70,7 @@ export function AppMap({
         onClick={() => setIsOpen(!isOpen)}
         isOpen={isOpen}
         position={position}
+        onPositionChange={handleButtonPositionChange}
       />
     );
   }
@@ -76,9 +81,10 @@ export function AppMap({
         onClick={() => setIsOpen(!isOpen)}
         isOpen={isOpen}
         position={position}
+        onPositionChange={handleButtonPositionChange}
       />
 
-      <Modal isOpen={isOpen}>
+      <Modal isOpen={isOpen} buttonPosition={buttonPos}>
         <Toolbar
           onExport={handleExport}
           onRelayout={handleRelayout}
@@ -87,7 +93,7 @@ export function AppMap({
           edgeCount={mergedData.edges.length}
         />
         <div style={{ flex: 1 }}>
-          <AppMapCanvas data={mergedData} />
+          <AppMapCanvas key={relayoutKey} data={mergedData} />
         </div>
       </Modal>
     </>

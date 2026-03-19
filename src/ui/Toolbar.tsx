@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { DEFAULT_THEME } from '../constants';
 
 interface ToolbarProps {
   onExport: () => void;
@@ -25,13 +26,13 @@ export function Toolbar({ onExport, onRelayout, onClose, routeCount, edgeCount }
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '10px 16px',
-        background: '#18181b',
-        borderBottom: '1px solid #27272a',
+        background: DEFAULT_THEME.nodeBgColor,
+        borderBottom: `1px solid ${DEFAULT_THEME.nodeBorderColor}`,
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <span style={{ color: '#e4e4e7', fontWeight: 600, fontSize: '14px' }}>
+        <span style={{ color: DEFAULT_THEME.textColor, fontWeight: 600, fontSize: '14px' }}>
           App Map
         </span>
         <span style={{ color: '#71717a', fontSize: '12px' }}>
@@ -91,7 +92,7 @@ function ToolbarButton({
         gap: '6px',
         padding: '6px 10px',
         borderRadius: '6px',
-        border: '1px solid #27272a',
+        border: `1px solid ${DEFAULT_THEME.nodeBorderColor}`,
         background: '#09090b',
         color: '#a1a1aa',
         cursor: 'pointer',
@@ -100,8 +101,8 @@ function ToolbarButton({
         transition: 'all 0.15s ease',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = '#27272a';
-        e.currentTarget.style.color = '#e4e4e7';
+        e.currentTarget.style.background = DEFAULT_THEME.nodeBorderColor;
+        e.currentTarget.style.color = DEFAULT_THEME.textColor;
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.background = '#09090b';

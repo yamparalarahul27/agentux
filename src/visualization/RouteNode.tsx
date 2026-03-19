@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { Handle, Position, type NodeProps } from '@xyflow/react';
+import { DEFAULT_THEME } from '../constants';
 
 export interface RouteNodeData {
   label: string;
@@ -14,7 +15,7 @@ const frameworkColors: Record<string, string> = {
   'nextjs-app': '#0070f3',
   'nextjs-pages': '#0070f3',
   'react-router': '#f44250',
-  unknown: '#6366f1',
+  unknown: DEFAULT_THEME.accentColor,
 };
 
 const sourceColors: Record<string, string> = {
@@ -34,16 +35,16 @@ export const RouteNodeComponent = memo(({ data }: NodeProps) => {
       style={{
         padding: '12px 16px',
         borderRadius: '8px',
-        background: '#18181b',
-        border: '1px solid #27272a',
+        background: DEFAULT_THEME.nodeBgColor,
+        border: `1px solid ${DEFAULT_THEME.nodeBorderColor}`,
         minWidth: '220px',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
         fontSize: '13px',
-        color: '#e4e4e7',
+        color: DEFAULT_THEME.textColor,
         boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
       }}
     >
-      <Handle type="target" position={Position.Top} style={{ background: '#6366f1' }} />
+      <Handle type="target" position={Position.Top} style={{ background: DEFAULT_THEME.accentColor }} />
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
         <span style={{ fontWeight: 600, fontSize: '14px' }}>{nodeData.label}</span>
@@ -81,7 +82,7 @@ export const RouteNodeComponent = memo(({ data }: NodeProps) => {
         </div>
       )}
 
-      <Handle type="source" position={Position.Bottom} style={{ background: '#6366f1' }} />
+      <Handle type="source" position={Position.Bottom} style={{ background: DEFAULT_THEME.accentColor }} />
     </div>
   );
 });
