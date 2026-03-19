@@ -1,5 +1,5 @@
 {
-  "name": "appmap",
+  "name": "agentux",
   "version": "0.1.0",
   "description": "Interactive App Map visualization for React — see all screens, routes, and navigation flows in a drag-and-drop canvas. Export as structured Markdown for AI agents.",
   "type": "module",
@@ -56,7 +56,7 @@
   },
   "keywords": [
     "react",
-    "appmap",
+    "agentux",
     "visualization",
     "routes",
     "navigation",
@@ -68,7 +68,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yamparalarahul27/appmap.git"
+    "url": "https://github.com/yamparalarahul27/agentux.git"
   },
   "author": "yamparalarahul27"
 }
