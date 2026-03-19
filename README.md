@@ -2,13 +2,13 @@
 
 An agent-agnostic visual feedback tool. Map all screens of your app, correct flows, and copy structured output that helps AI coding agents find the exact code you're referring to.
 
-![npm](https://img.shields.io/npm/v/agentux)
-![license](https://img.shields.io/npm/l/agentux)
+![npm](https://img.shields.io/npm/v/@yamparala27/agentux)
+![license](https://img.shields.io/npm/l/@yamparala27/agentux)
 
 ## Installation
 
 ```bash
-npm install agentux -D
+npm install @yamparala27/agentux -D
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ npm install agentux -D
 Add the `<AppMap />` component to your application. A floating button appears in the bottom-right corner. Click it to open an interactive map of your entire app.
 
 ```tsx
-import { AppMap } from 'agentux';
+import { AppMap } from '@yamparala27/agentux';
 
 function App() {
   return (
@@ -75,18 +75,18 @@ This lets the agent search your codebase for the exact file and line number, rat
 For a complete map without needing to visit every page, run static analysis first:
 
 ```ts
-import { analyzeProject } from 'agentux/analysis';
+import { analyzeProject } from '@yamparala27/agentux/analysis';
 import { writeFileSync } from 'fs';
 
 const data = await analyzeProject('./');
-writeFileSync('agentux.json', JSON.stringify(data, null, 2));
+writeFileSync('@yamparala27/agentux.json', JSON.stringify(data, null, 2));
 ```
 
 Then pass the result to the component:
 
 ```tsx
-import { AppMap } from 'agentux';
-import mapData from '../agentux.json';
+import { AppMap } from '@yamparala27/agentux';
+import mapData from '../@yamparala27/agentux.json';
 
 function App() {
   return (

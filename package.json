@@ -1,5 +1,5 @@
 {
-  "name": "agentux",
+  "name": "@yamparala27/agentux",
   "version": "0.1.0",
   "description": "Interactive App Map visualization for React — see all screens, routes, and navigation flows in a drag-and-drop canvas. Export as structured Markdown for AI agents.",
   "type": "module",
