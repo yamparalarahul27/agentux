@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useCallback, useMemo, useState } from 'react';
 import type { AppMapConfig, AppMapData } from '../types';
 import { DEFAULT_POSITION } from '../constants';
