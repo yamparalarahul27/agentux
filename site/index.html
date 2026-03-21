@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgentUX | UX Flow Workspace For AI-Built Apps</title>
+    <meta
+      name="description"
+      content="See the real user flow your AI is building, shape the intended journey, and export it back to your coding agent as a structured spec."
+    />
+    <link rel="icon" type="image/svg+xml" href="./logo.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="AgentUX home">
+          <img src="./logo.svg" alt="" width="28" height="28" />
+          <span>AgentUX</span>
+        </a>
+        <nav class="nav">
+          <a href="#overview">Overview</a>
+          <a href="#install">Install</a>
+          <a href="#features">Features</a>
+          <a href="#output">Output</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero" id="overview">
+          <div class="hero-copy">
+            <p class="eyebrow">UX flow workspace for AI-built apps</p>
+            <h1>See the user journey your AI is building before it drifts.</h1>
+            <p class="hero-text">
+              AgentUX maps how screens connect right now, lets you shape the intended next flow,
+              and exports that UX plan back into your coding agent as a structured spec.
+            </p>
+            <div class="install-command" aria-label="Install command">
+              <code>npm install @yamparala27/agentux -D</code>
+            </div>
+            <div class="hero-actions">
+              <a class="button button-primary" href="https://github.com/yamparalarahul27/agentux">View GitHub</a>
+              <a class="button button-secondary" href="#install">Install AgentUX</a>
+            </div>
+            <ul class="signal-list">
+              <li>Static route detection for Next.js and React Router</li>
+              <li>Runtime evidence for paths the app actually takes</li>
+              <li>Markdown plus structured export for AI handoff</li>
+            </ul>
+          </div>
+
+          <div class="hero-board" aria-label="Illustration of current and intended product flows">
+            <div class="board-panel">
+              <div class="panel-label">Current flow</div>
+              <div class="flow-card">
+                <span class="flow-node">Home</span>
+                <span class="flow-arrow">-></span>
+                <span class="flow-node">Sign up</span>
+                <span class="flow-arrow">-></span>
+                <span class="flow-node">Dashboard</span>
+                <span class="flow-arrow">-></span>
+                <span class="flow-node flow-node-muted">?</span>
+              </div>
+              <div class="flow-card">
+                <span class="flow-node">Home</span>
+                <span class="flow-arrow">-></span>
+                <span class="flow-node">Sign in</span>
+                <span class="flow-arrow">-></span>
+                <span class="flow-node">Dashboard</span>
+                <span class="flow-arrow">-></span>
+                <span class="flow-node">Budgets</span>
+              </div>
+            </div>
+
+            <div class="board-panel board-panel-accent">
+              <div class="panel-label">Intended flow</div>
+              <div class="flow-stage">
+                <div class="stage-chip">First-run journey</div>
+                <div class="flow-card flow-card-vertical">
+                  <span class="flow-node">Home</span>
+                  <span class="flow-arrow flow-arrow-down">|</span>
+                  <span class="flow-node">Sign up</span>
+                  <span class="flow-arrow flow-arrow-down">|</span>
+                  <span class="flow-node">Onboarding</span>
+                  <span class="flow-arrow flow-arrow-down">|</span>
+                  <span class="flow-node">Connect bank</span>
+                  <span class="flow-arrow flow-arrow-down">|</span>
+                  <span class="flow-node">Dashboard</span>
+                </div>
+              </div>
+              <div class="spec-caption">Turn loose prompts into a flow spec the AI can follow.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="why">
+          <div class="section-heading">
+            <p class="eyebrow">Why AgentUX</p>
+            <h2>AI builds screens quickly. It does not preserve product flow on its own.</h2>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <span class="feature-index">01</span>
+              <h3>Understand current flow</h3>
+              <p>
+                Detect routes, links, and observed runtime transitions so you can inspect the app
+                that exists today instead of guessing from scattered prompts.
+              </p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-index">02</span>
+              <h3>Shape intended flow</h3>
+              <p>
+                Rearrange a journey semantically by deciding what should happen next, not just by
+                moving boxes around for presentation.
+              </p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-index">03</span>
+              <h3>Export back to AI</h3>
+              <p>
+                Send a human-readable and machine-friendly flow spec back into your coding agent so
+                the next build step follows a UX model, not fragmented instructions.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section-band" id="loop">
+          <div class="section-heading">
+            <p class="eyebrow">The product loop</p>
+            <h2>A simple feedback cycle for builders shipping with AI.</h2>
+          </div>
+
+          <div class="loop-grid">
+            <article class="loop-step">
+              <span class="loop-number">1</span>
+              <h3>Install in your app</h3>
+              <p>Drop AgentUX into the project and let it inspect routes, edges, and runtime paths.</p>
+            </article>
+            <article class="loop-step">
+              <span class="loop-number">2</span>
+              <h3>Review the current journey</h3>
+              <p>See where users enter, branch, stall, or fall into missing next steps.</p>
+            </article>
+            <article class="loop-step">
+              <span class="loop-number">3</span>
+              <h3>Define the intended next flow</h3>
+              <p>Mark what the experience should become before asking AI to implement the next round.</p>
+            </article>
+            <article class="loop-step">
+              <span class="loop-number">4</span>
+              <h3>Export the spec</h3>
+              <p>Give your agent a structured flow handoff it can build against with much less drift.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="install">
+          <div class="section-heading">
+            <p class="eyebrow">Install</p>
+            <h2>Download the package, render it in your app, and start mapping flow.</h2>
+          </div>
+
+          <div class="install-guide">
+            <article class="install-step-card">
+              <span class="step-kicker">Step 1</span>
+              <h3>Install the package</h3>
+              <pre><code>npm install @yamparala27/agentux -D</code></pre>
+              <p>Add AgentUX as a dev dependency in the app you are actively building with AI.</p>
+            </article>
+
+            <article class="install-step-card">
+              <span class="step-kicker">Step 2</span>
+              <h3>Render the app map</h3>
+              <pre><code>import { AppMap } from '@yamparala27/agentux';
+
+function App() {
+  return (
+    &lt;&gt;
+      &lt;YourApp /&gt;
+      &lt;AppMap /&gt;
+    &lt;/&gt;
+  );
+}</code></pre>
+              <p>A floating button appears in development so you can inspect the current screen graph.</p>
+            </article>
+
+            <article class="install-step-card">
+              <span class="step-kicker">Optional</span>
+              <h3>Precompute a fuller map</h3>
+              <pre><code>import { analyzeProject } from '@yamparala27/agentux/analysis';
+
+const data = await analyzeProject('./');</code></pre>
+              <p>Use static analysis when you want more complete route coverage before visiting every page.</p>
+            </article>
+          </div>
+
+          <div class="install-grid">
+            <div class="install-card">
+              <h3>Works with</h3>
+              <ul class="check-list">
+                <li>Next.js App Router</li>
+                <li>Next.js Pages Router</li>
+                <li>React Router</li>
+              </ul>
+            </div>
+            <div class="install-card">
+              <h3>Best for</h3>
+              <ul class="check-list">
+                <li>AI-built product prototypes</li>
+                <li>Cleaning up flow after rapid prompts</li>
+                <li>Turning UX intent into a spec for agents</li>
+              </ul>
+            </div>
+            <div class="install-card">
+              <h3>Deploy this landing page on Vercel</h3>
+              <ul class="check-list">
+                <li>Framework Preset: Other</li>
+                <li>Root Directory: site</li>
+                <li>Build Command: leave empty</li>
+                <li>Output Directory: leave empty</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="features">
+          <div class="section-heading">
+            <p class="eyebrow">Who it helps</p>
+            <h2>Built for the moment when the app is growing faster than your mental model.</h2>
+          </div>
+
+          <div class="scenario-grid">
+            <article class="scenario-card">
+              <h3>Personal finance</h3>
+              <p>
+                Clean up the first-run path from landing page to signup, onboarding, bank connect,
+                and dashboard.
+              </p>
+            </article>
+            <article class="scenario-card">
+              <h3>SaaS admin</h3>
+              <p>
+                Untangle settings, billing, team management, and audit flows before navigation turns
+                into patchwork.
+              </p>
+            </article>
+            <article class="scenario-card">
+              <h3>E-commerce</h3>
+              <p>
+                Compare guest checkout and signed-in checkout paths, then tell AI which flow should
+                become the default.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="output">
+          <div class="section-heading">
+            <p class="eyebrow">Flow spec export</p>
+            <h2>Give humans a clear summary and give AI a stable structure.</h2>
+          </div>
+
+          <div class="spec-layout">
+            <div class="spec-note">
+              <h3>What the export should carry</h3>
+              <ul class="check-list">
+                <li>Current flow grounded in code and runtime evidence</li>
+                <li>Intended next-state journey</li>
+                <li>Requested changes and open questions</li>
+                <li>Stable node and edge data for AI consumption</li>
+              </ul>
+            </div>
+
+            <pre class="spec-block"><code># AgentUX Flow Spec
+
+## Product Goal
+Help a user reach a useful dashboard after connecting their bank.
+
+## Current Flow
+- Home -> Sign up -> Dashboard
+- Home -> Sign in -> Dashboard -> Budgets
+
+## Intended Flow
+- Home -> Sign up -> Onboarding -> Connect bank -> Dashboard
+- Returning users: Home -> Sign in -> Dashboard
+
+## Requested Changes
+1. Add onboarding after first sign-up
+2. Make bank connection mandatory before dashboard
+3. Surface a clear next step on dashboard
+
+```json
+{
+  "nodes": ["home", "signup", "onboarding", "connect-bank", "dashboard"],
+  "edges": ["home->signup", "signup->onboarding", "onboarding->connect-bank"]
+}
+```</code></pre>
+          </div>
+        </section>
+
+        <section class="section section-band" id="faq">
+          <div class="section-heading">
+            <p class="eyebrow">FAQ</p>
+            <h2>Short answers to the setup questions most builders hit first.</h2>
+          </div>
+
+          <div class="faq-list">
+            <article class="faq-card">
+              <h3>Is AgentUX a Next.js app?</h3>
+              <p>No. The package is a React and TypeScript library that can be installed into Next.js or React Router apps.</p>
+            </article>
+            <article class="faq-card">
+              <h3>What does it help me do first?</h3>
+              <p>It helps you see the app flow you have today, then define the intended flow you want next before prompting AI again.</p>
+            </article>
+            <article class="faq-card">
+              <h3>Is this analytics?</h3>
+              <p>No. AgentUX is for development-time UX understanding, not production session replay or funnel analytics.</p>
+            </article>
+            <article class="faq-card">
+              <h3>Why export both Markdown and structure?</h3>
+              <p>Humans review the summary quickly, while coding agents work better when the same flow is also represented as stable node and edge data.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div>
+          <strong>AgentUX</strong>
+          <p>The UX flow workspace for AI-built apps.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/yamparalarahul27/agentux">GitHub</a>
+          <a href="https://github.com/yamparalarahul27/agentux/blob/main/docs/agentux-prd.md">PRD</a>
+          <a href="https://github.com/yamparalarahul27/agentux/blob/main/docs/agentux-v0.1-implementation-plan.md">v0.1 plan</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
