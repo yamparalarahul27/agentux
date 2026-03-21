@@ -1,0 +1,9 @@
+{
+  "name": "agentux-site",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Static landing page for AgentUX",
+  "engines": {
+    "node": "22.x"
+  }
+}
