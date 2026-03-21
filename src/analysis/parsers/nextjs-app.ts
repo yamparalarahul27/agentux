@@ -1,7 +1,8 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import type { RouteNode, ScanResult } from '../../types';
-import { segmentToRoute, pathToScreenName, pathToId, relativePath } from './common';
+import { segmentToRoute, pathToScreenName, pathToId } from './common';
+import { relativePath } from './path';
 
 /** Page file names that represent a route in Next.js App Router */
 const PAGE_FILES = ['page.tsx', 'page.ts', 'page.jsx', 'page.js'];

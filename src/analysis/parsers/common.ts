@@ -1,5 +1,3 @@
-import * as path from 'node:path';
-
 /** Convert a file-system segment name to a route segment */
 export function segmentToRoute(segment: string): string | null {
   // Route groups: (marketing) → skip (not part of URL)
@@ -77,11 +75,6 @@ export function pathToId(routePath: string): string {
         .replace(/:/g, '')
         .replace(/\*/g, '')
         .replace(/\?/g, '');
-}
-
-/** Get relative path from root directory */
-export function relativePath(rootDir: string, filePath: string): string {
-  return path.relative(rootDir, filePath).replace(/\\/g, '/');
 }
 
 /** Check if a concrete path matches a route pattern with dynamic segments */

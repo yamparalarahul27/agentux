@@ -1,8 +1,9 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import type { RouteNode, ScanResult } from '../../types';
-import { pathToScreenName, pathToId, relativePath } from './common';
+import { pathToScreenName, pathToId } from './common';
 import { walkDirectory, isSourceFile } from '../scanner';
+import { relativePath } from './path';
 
 /** Scan a React Router project for routes by parsing route config files */
 export function scanReactRouterRoutes(rootDir: string): ScanResult {

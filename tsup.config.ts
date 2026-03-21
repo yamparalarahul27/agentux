@@ -10,6 +10,7 @@ export default defineConfig([
     clean: true,
     external: ['react', 'react-dom'],
     treeshake: true,
+    onSuccess: 'node scripts/patch-browser-entry.mjs',
   },
   // Node.js analysis entry (includes Babel for AST parsing)
   {

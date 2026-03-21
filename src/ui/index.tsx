@@ -25,7 +25,7 @@ export function AppMap({
   const [buttonPos, setButtonPos] = useState<ButtonPosition | null>(null);
 
   // Runtime route detection — must be called before any conditional returns (Rules of Hooks)
-  const runtimeData = useRuntimeRoutes();
+  const runtimeData = useRuntimeRoutes(runtimeDetection);
 
   // Merge static + runtime data
   const mergedData: AppMapData | null = useMemo(() => {

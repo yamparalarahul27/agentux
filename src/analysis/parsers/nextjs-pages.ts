@@ -1,9 +1,10 @@
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import type { RouteNode, ScanResult } from '../../types';
-import { segmentToRoute, pathToScreenName, pathToId, relativePath } from './common';
+import { segmentToRoute, pathToScreenName, pathToId } from './common';
 import { isSourceFile } from '../scanner';
 import { IGNORED_ROUTES } from '../../constants';
+import { relativePath } from './path';
 
 /** Scan a Next.js Pages Router project for routes */
 export function scanNextjsPagesRoutes(rootDir: string): ScanResult {
